@@ -1,0 +1,13 @@
+public interface ApiInterface {
+
+    @GET(ApiConstants.COMPANYINFO)
+    Call<ResponseBody>getinfocompany();
+
+
+if params available
+    @FormUrlEncoded
+    @POST(ApiConstants.COMPANYINFO)
+    Call<ResponseBody>getMemName(@FieldMap HashMap<String,String> mem);
+
+   
+}
