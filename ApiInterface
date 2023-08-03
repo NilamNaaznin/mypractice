@@ -9,5 +9,11 @@ if params available
     @POST(ApiConstants.COMPANYINFO)
     Call<ResponseBody>getMemName(@FieldMap HashMap<String,String> mem);
 
+
+if get API
+@GET(ApiConstants.COMPANYINFO)
+    Call<ResponseBody>getMemName(@QueryMap HashMap<String,String> mem);
+
+
    
 }
