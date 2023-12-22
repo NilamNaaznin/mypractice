@@ -3,3 +3,85 @@ public interface ApiResponse {
     void OnResponse(String response,int apiRequest);
     void OnError(String errorResponse,int apiRequest);
 }
+
+
+ try {
+                    JSONObject object = new JSONObject(response);
+                    JSONArray array = object.getJSONArray("LoanStatement");
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject jsonObject = array.getJSONObject(i);
+                        loanStatementList.add(new LoanStatementClass(jsonObject.optString(""),
+                                jsonObject.optString(""),
+                                jsonObject.optString(""),
+                                jsonObject.optString(""),
+                                jsonObject.optString(""),
+                                jsonObject.optString("")));
+                    }
+                    setLoanStatementAdapter();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adapter
+
+
+
+ private Context context;
+    private List<LoanStatementClass> loanStatementList;
+
+    public LoanStatementAdapter(Context context, List<LoanStatementClass> loanStatementList) {
+        this.context = context;
+        this.loanStatementList = loanStatementList;
+
+    }
+
+    @NonNull
+    @Override
+    public LoanStatementAdapter.ItemView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view= LayoutInflater.from(context).inflate(R.layout.item_loan_statement,parent,false);
+        return new ItemView(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull LoanStatementAdapter.ItemView holder, int position) {
+        holder.binding.tvLoanId.setText(loanStatementList.get(position).getLoanId());
+        holder.binding.tvLoanDate.setText(loanStatementList.get(position).getPayDate());
+        holder.binding.tvEMIno.setText(loanStatementList.get(position).getPayNo());
+        holder.binding.tvParticular.setText(loanStatementList.get(position).getPrinciple());
+        holder.binding.tvPayAmount.setText(loanStatementList.get(position).getPayAmount());
+        holder.binding.tvInterest.setText(loanStatementList.get(position).getInterest());
+    }
+
+    @Override
+    public int getItemCount() {
+        return loanStatementList.size();
+    }
+
+    public class ItemView extends RecyclerView.ViewHolder {
+        private ItemLoanStatementBinding binding;
+        public ItemView(@NonNull View itemView) {
+            super(itemView);
+            binding=ItemLoanStatementBinding.bind(itemView);
+        }
+    }
