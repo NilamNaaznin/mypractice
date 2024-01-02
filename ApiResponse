@@ -29,24 +29,6 @@ public interface ApiResponse {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Adapter
-
-
-
  private Context context;
     private List<LoanStatementClass> loanStatementList;
 
